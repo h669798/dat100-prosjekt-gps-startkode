@@ -1,78 +1,88 @@
 package no.hvl.dat100ptc.oppgave1;
 
-import no.hvl.dat100ptc.TODO;
-
 public class GPSPoint {
 
-	// TODO - objektvariable
+	/* Deklarering av objektvariablene:
+	 * tid, breddegrad, lengdegrad og høyde. */
+	
+	private int time;
+	private double latitude;
+	private double longitude;
+	private double elevation;
 		
 	public GPSPoint(int time, double latitude, double longitude, double elevation) {
 
-		// TODO - konstruktør
-
-		// Fjern linjene med throw new etterhvert som metodene implementeres
-		throw new UnsupportedOperationException(TODO.construtor("GPSPoint"));
-
+		/* Implementerer konstruktører for
+		initialisering av objektvariablene. */
+		   
+		this.time = time;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.elevation = elevation;
+	
 	}
 
-	// TODO - get/set metoder
+	
+	/* Get-metoden returnerer verdien på variabelen. 
+	 * Set-metoden setter verdien på variabelen. */
+	
 	public int getTime() {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return time;
 		
 	}
 
 	public void setTime(int time) {
 				
-		throw new UnsupportedOperationException(TODO.method());
+		this.time = time;
 
 	}
 
 	public double getLatitude() {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return latitude;
 		
 	}
 
 	public void setLatitude(double latitude) {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		this.latitude = latitude;
 		
 	}
 
 	public double getLongitude() {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return longitude;
 		
 	}
 
 	public void setLongitude(double longitude) {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		this.longitude = longitude;
 		
 	}
 
 	public double getElevation() {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return elevation;
 		
 	}
 
 	public void setElevation(double elevation) {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		this.elevation = elevation;
 		
 	}
 	
+	
 	public String toString() {
 		
-		String str;
+		/* Deklarerer en String-variabel og gir den en tekst som inneholder:
+		 * tid, breddegrad, lengdegrad og høyde. Returnerer så String-variabelen. */
 		
-		// TODO - start
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - slutt
+		String str = time + " (" +  latitude + "," + longitude + ") " + elevation + "\n";
 		
+		return str;	 
 	}
+	
 }
