@@ -11,6 +11,8 @@ public class GPSDataConverter {
 		int secs;
 		int hr, min, sec;
 		
+		// Format eksempel: 2022-10-18T59:30:01.000Z
+		
 		hr = Integer.parseInt(timestr.substring(TIME_STARTINDEX,13));
 		min = Integer.parseInt(timestr.substring(14,16));
 		sec = Integer.parseInt(timestr.substring(17,19));
@@ -23,7 +25,7 @@ public class GPSDataConverter {
 	public static GPSPoint convert(String timeStr, String latitudeStr, String longitudeStr, String elevationStr) {
 
 		GPSPoint gpspoint;
-
+		
 		int time = toSeconds(timeStr);
 		double latitude = Double.parseDouble(latitudeStr);
 		double longitude = Double.parseDouble(longitudeStr);
