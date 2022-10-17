@@ -2,7 +2,6 @@ package no.hvl.dat100ptc.oppgave3;
 
 import static java.lang.Math.*;
 
-import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
 public class GPSUtils {
@@ -44,7 +43,7 @@ public class GPSUtils {
 
 		double[] latitudes = new double[gpspoints.length];
 		
-		for(double i = 0; i < latitudes.length; i++) {
+		for(int i = 0; i < latitudes.length; i++) {
 			latitudes[i] = gpspoints[i].getLatitude();
 		}
 		return latitudes;
@@ -54,7 +53,7 @@ public class GPSUtils {
 
             double[] longitudes = new double[gpspoints.length];
 		
-		for(double i = 0; i < longitudes.length; i++) {
+		for(int i = 0; i < longitudes.length; i++) {
 			longitudes[i] = gpspoints[i].getLongitude();
 		}
 		return longitudes;
@@ -102,34 +101,25 @@ public class GPSUtils {
 	public static String formatTime(int secs) {
 
 		String timestr;
-		String TIMESEP = ":";
 		
-		int s = secs % 60;
+		int ss = secs % 60;
 		secs /= 60;
-		int m = secs % 60;
+		int mm = secs % 60;
 		secs /= 60;
-		int h = secs % 60;
+		int hh = secs % 60;
 		
-		String ss = Integer.toString(s);
-		String mm = Integer.toString(m);
-		String hh = Integer.toString(h);
-		
-		
-		// TODO - SEARCH ONLINE ABOUT JAVA FORMATTING?
-
+		timestr = String.format("%02d:%02d:%02d", hh,mm,ss);
+		return timestr;
 	}
 	
 	private static int TEXTWIDTH = 10;
 
 	public static String formatDouble(double d) {
 
-		String str;
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
+		String str = String.format("%.2f", d);
+		String storrelse = String.format("%10s", str);
+		
+		return storrelse;
 		
 	}
 }
