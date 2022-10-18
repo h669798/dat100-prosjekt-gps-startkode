@@ -274,7 +274,6 @@ public class GPSComputer {
 		strTab[5] = Energ;
 		
 		
-		
 		System.out.println("==============================================");
 		return strTab;
 		
