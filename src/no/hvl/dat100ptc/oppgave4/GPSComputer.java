@@ -25,11 +25,12 @@ public class GPSComputer {
 	public GPSPoint[] getGPSPoints() {
 		return this.gpspoints;
 	}
-	
+	//a)
 	// beregn total distances (i meter)
 	public double totalDistance() {
 		
  double distance = 0;
+
 		
  // TODO - START
 		for (int i = 0; i < gpspoints.length - 1; i++) {
@@ -39,6 +40,17 @@ public class GPSComputer {
 			
 		}
 		return distance;
+/**Forklaring: 1. implementer metoden public douuble totalDistance() som beregner den totale distansen på ruten som GPS datene i gpspoints-tabellen angir. 
+*Dvs metoden må legge sammen distanser mellom de punktene som utgjør ruten. 
+*2. implementerer Data type bouble distance = 0;. Double som lagrer brøktall. Tilstrekkelig for lagring av 15 desimaler. 
+*3. implementerer for (int i = 0; i < gpspoints.length - 1; i++). Jeg vet hvor mange ganger jeg vil gå gjennom en kodeblokk, bruker jeg for-løkken.
+* for (utsagn 1(int = 0); utsagn 2( i < gpspoints.length -1), utsagn 3(i++)), utsagn 1: utføres (en gang) før utførelse av kodeblokken,
+* utsagn 2: definerer betingelsen for å utføre kodeblokken, utsagn 3: utføres (hver gang) etter at kodeblokken er utført.
+* utsagn 1 setter en variable før løkken starter(int i = 0). utsagn 2 definerer betingelsen for at sløyfen skal kjøre(i må være større enn (gpspoints.length - 1). 
+* hvis betingelsen er sann, vil sløyfen starte på nytt, hvis det er usann, vil sløyfen avsluttes. 
+* utsagn 3 øker en verdi (i++) hver gang kodeblokken i løkken har blit utført. 
+* (distance += GPSUtils.distance(gpspoints[i], gpspoints[i+1])): distance = GPSUtils.distance(gpspoints[i] +  gpspoints[i+1].
+**/
 
 		
 		//throw new UnsupportedOperationException(TODO.method());
@@ -56,14 +68,17 @@ public class GPSComputer {
 		for (int i = 0; i < gpspoints.length - 1; i++) {
 			
 			if (gpspoints[i].getElevation() > gpspoints[i].getElevation()) {
-			
-				elevation += gpspoints[i+1].getElevation() - gpspoints[i].getElevation();
-				
+				elevation += gpspoints[i+1].getElevation() - gpspoints[i].getElevation();		
 			}
 		}
-		
 		return elevation;
-
+/** Implementer metoden public double totalElevation() som beregner det totale antall høydemeter på ruten.
+*2. implementerer Data type bouble elevation = 0;. 3.for (int i = 0; i < gpspoints.length - 1; i++). 
+*4. if (gpspoints[i].getElevation() > gpspoints[i].getElevation()): Bruker if-setningen for å spesifisere en blokk med Java-kode 
+*som skal utføres hvis en betingelse er sann. Hvis gpspoints[i].getElevation() > gpspoints[i].getElevation().
+*5. elevation += gpspoints[i+1].getElevation() - gpspoints[i].getElevation(): elevation = elevation + gpspoints[i+1].getElevation() - gpspoints[i].getElevation()
+* 6. return elevation : ... (elevation) i outputs
+**/
 		//throw new UnsupportedOperationException(TODO.method());
 		
 		// TODO - SLUTT
@@ -250,7 +265,7 @@ public class GPSComputer {
 		System.out.println(avgSp);
 		System.out.println(Energ);
 		
-		String[] strTab = new String[6];
+		String[] strTab = new String[5];
 		strTab[0] = totTime;
 		strTab[1] = totDist;
 		strTab[2] = totElev;
