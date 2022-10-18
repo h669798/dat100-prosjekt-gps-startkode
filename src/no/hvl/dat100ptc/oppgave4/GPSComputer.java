@@ -203,7 +203,7 @@ public class GPSComputer {
 			
 					
 		}
-		System.out.println(totalkcal);
+		
 		return totalkcal;
 	}
 		//throw new UnsupportedOperationException(TODO.method());
