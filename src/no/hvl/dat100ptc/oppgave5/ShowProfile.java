@@ -45,23 +45,30 @@ public class ShowProfile extends EasyGraphics {
 
 		// ybase indicates the position on the y-axis where the columns should start
 	
-		int x = MARGIN,y;
+		int x = MARGIN;
 
 		// TODO - START
-		for(int i = 0; i < gpspoints.length; i++) {
+		
+			double[]elevat = new double[gpspoints.length];
+		for(int i = 0; i < elevat.length; i++) {
+			if (gpspoints[i].getElevation() < 0)
+				elevat[i] = 0;
+			else 
+				elevat[i] = gpspoints[i].getElevation();
+		}
+		int skalering = Integer.parseInt(getText("Skalering: "));
+		
+		for (double e : elevat) {
+		
 			
-			double height1 = gpspoints[i].getElevation();
-			double høyde1 = Math.round(height1);
+			setColor(3,150,50);
+			pause(skalering);
+			drawLine(x, ybase, x, ybase-(int)e);
 			
-			setColor(0,0,255);
-			drawLine(x, ybase, x, (int)(ybase-høyde1));
-			
-			x=x+2;
+			x += 2;
 		}
 		//throw new UnsupportedOperationException(TODO.method());
 	
 		// TODO - SLUTT
 	}
-
 }
-
