@@ -12,7 +12,7 @@ public class ShowRoute extends EasyGraphics {
 
 	private static int MARGIN = 50;
 	private static int MAPXSIZE = 800;
-	private static int MAPYSIZE = 800;
+	private static int MAPYSIZE = 550;
 
 	private GPSPoint[] gpspoints;
 	private GPSComputer gpscomputer;
@@ -56,6 +56,7 @@ public class ShowRoute extends EasyGraphics {
 	
 		double maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
 		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
+		
 		double ystep = MAPYSIZE / (Math.abs(maxlat - minlat));
 		
 		// TODO - START
@@ -69,37 +70,70 @@ return ystep;
 	public void showRouteMap(int ybase) {
 
 		// TODO - START
-		double startx = 0;
-		double starty = 0;
-		double ystep = ystep();
-		double xstep = xstep();
+		double[] lats = GPSUtils.getLatitudes(gpspoints);
+		double[] longs = GPSUtils.getLongitudes(gpspoints);
 		
-		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
-		double minlon = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
+		double latMin = GPSUtils.findMin(lats);
+		double longMin = GPSUtils.findMin(longs);
 		
-		starty=ybase-(Math.abs(gpspoints[0].getLatitude()-minlat)*ystep); 
-		//Forskjellen nå gange pixler per latitude
 		
-		startx=50-(Math.abs(gpspoints[0].getLongitude()-minlon)*xstep); 
-		//Forskjellen nå gange pixler per logitude
 		
-		for(int i=1; i < gpspoints.length-1; i++) {
-			double lat = gpspoints[i].getLatitude();
-			double lon = gpspoints[i].getLongitude();
-			double endy = ybase-(Math.abs(lat-minlat)*ystep); 
-			double endx = 50+(Math.abs(lon-minlon)*xstep);
+		
+		
+		for(int i = 0; i < lats.length; i++) {
 			
-			setColor(0,255,0);
-			drawLine((int)startx,(int)starty,(int)endx,(int)endy);
-			fillCircle((int)startx,(int)starty,(int)3);
-			starty=endy;
-			startx=endx;
+			int y = (int)((lats[i] - latMin)*ystep());
+			int x = (int)((longs[i] - longMin)*xstep());
+			
+			setColor(30,150,20);
+			fillCircle(MARGIN +x , ybase - y, 2);
+			
+			if (i < lats.length -1)
+				drawLine(MARGIN + x, ybase - y, MARGIN + (int)((longs[i+1] - longMin)*xstep()), ybase - (int)((lats[i+1] - latMin)*ystep()));
 			
 		}
 		
-		//throw new UnsupportedOperationException(TODO.method());
+		int xStart = (int)((longs[0] - longMin)*xstep());
+		int yStart = (int)((lats[0] - latMin)*ystep());
+		setColor(10,10,190);
+		int sirkel = fillCircle(MARGIN + xStart, ybase - ybase - yStart, 4);
 		
-		// TODO - SLUTT
+		double[] speedTab = new GPSComputer(gpspoints).speeds();
+		double maxSpeed = GPSUtils.findMax(speedTab);
+		double minSpeed = GPSUtils.findMin(speedTab);
+		double SpeedStep = (maxSpeed - minSpeed)/10;
+		
+		
+		for (int i = 0; i < lats.length; i++) {
+			
+			if (i < speedTab.length -1) {
+			if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep) 
+				setSpeed(1);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*2) 
+				setSpeed(2);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*3) 
+				setSpeed(3);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*4) 
+				setSpeed(4);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*5) 
+				setSpeed(5);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*6) 
+				setSpeed(6);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*7) 
+				setSpeed(7);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*8) 
+				setSpeed(8);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*9) 
+				setSpeed(9);
+			else
+				setSpeed(10);
+			}
+			
+			int y = (int)((lats[i] - latMin)*ystep());
+			int x = (int)((longs[i] - longMin)*xstep());
+			moveCircle(sirkel, MARGIN + x, ybase - y);
+		}
+		
 	}
 
 	public void showStatistics() {
@@ -107,25 +141,13 @@ return ystep;
 		int TEXTDISTANCE = 20;
 
 		setColor(0,0,0);
-		setFont("Courier",12);
+		setFont("Arial",12);
+		String[] tab = gpscomputer.displayStatistics();
+		int y = TEXTDISTANCE;
+		for (int i = 0; i < tab.length; i++) {
+			drawString(tab[i], 10, y);
+			y+= TEXTDISTANCE;
+		}
 		
-		String time = ("Total time         : " + GPSUtils.formatTime(gpscomputer.totalTime()));
-		drawString(time,TEXTDISTANCE,TEXTDISTANCE);
-		String distance = ("Total distance : " + GPSUtils.formatDouble(gpscomputer.totalDistance()/1000)+"km");
-		drawString(distance,TEXTDISTANCE,TEXTDISTANCE*2);
-		String elevation = ("Total elevation: " + GPSUtils.formatDouble(gpscomputer.totalElevation())+"m");
-		drawString(elevation,TEXTDISTANCE,TEXTDISTANCE*3);
-		String maxspeed = ("Max Speed      : " + GPSUtils.formatDouble(gpscomputer.maxSpeed())+"km/t");
-		drawString(maxspeed,TEXTDISTANCE,TEXTDISTANCE*4);
-		String avgspeed = ("Avg Speed      : " + GPSUtils.formatDouble(gpscomputer.averageSpeed())+"km/t");
-		drawString(avgspeed,TEXTDISTANCE,TEXTDISTANCE*5);
-		String kcal = ("Energy             : " + GPSUtils.formatDouble(gpscomputer.totalKcal(80))+"kcal");
-		drawString(kcal,TEXTDISTANCE,TEXTDISTANCE*6);
-		// TODO - START
-		
-		//throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - SLUTT;
 	}
-
 }
