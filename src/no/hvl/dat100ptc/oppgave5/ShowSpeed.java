@@ -10,7 +10,7 @@ import no.hvl.dat100ptc.oppgave2.GPSDataFileReader;
 import no.hvl.dat100ptc.oppgave3.GPSUtils;
 import no.hvl.dat100ptc.oppgave4.GPSComputer;
 
-public class ShowSpeed extends EasyGraphics{
+public class ShowSpeed extends EasyGraphics {
 			
 	private static final int MARGIN = 50;
 	private static final int BARHEIGHT = 200; // assume no speed above 200 km/t
@@ -45,22 +45,20 @@ public class ShowSpeed extends EasyGraphics{
 
 		// get segments speeds from the GPS computer object		
 		double[] speeds = gpscomputer.speeds();
-		double avgspeed = 0;
-		int x = MARGIN,y;
 		
-		for(int i = 0; i < gpspoints.length - 1; i++) {
-			
-			setColor(0,0,255);
-			drawLine(x, ybase, x, ybase-(int)speeds[i]);
-			
-			x=x+2;
-			avgspeed = avgspeed+speeds[i];
-		}
-		 avgspeed = avgspeed/N;
-		 setColor(0,255,0);
-		 drawLine (MARGIN,ybase-(int)avgspeed,x,ybase-(int)avgspeed);
-
 		// TODO - START
+		int x = MARGIN;
+		
+		for(double s : speeds) {
+			setColor(3,150,50);
+			drawLine(x, ybase, x, ybase-(int)s);
+			x += 2;
+		}
+	
+		
+		setColor(51,153,255);
+		drawLine(MARGIN,ybase - (int)gpscomputer.averageSpeed(),x,ybase-(int)gpscomputer.averageSpeed());
+		
 		
 		//throw new UnsupportedOperationException(TODO.method());
 	
