@@ -70,5 +70,16 @@ public class ShowProfile extends EasyGraphics {
 		//throw new UnsupportedOperationException(TODO.method());
 	
 		// TODO - SLUTT
+/* Oppgaven skal visualieres høyde-kurven for ruten gitt ved GPS datapunktene. det finnes allerede en main-metode som setter opp et vindu
+* som kan brukes til å tegne hydeprofilen og som ber om navn på datafil som skal vialisere short, medium long og vm. 
+* det leses inn data fra GPS datafilen ved oppstart og lagrer GPS i en tabell gpspoints med GPS punktene. (private GPSPoint[] gpspoints;)
+* implementerer metoden showHeightProfile(int ybase) som tegner høydeprofilen der parameteren ybase angir hvor på y-aksen bunnen av en søylene skal starte.
+*double[]elevat = new double[gpspoints.length];
+		*for(int i = 0; i < elevat.length; i++) {
+			*if (gpspoints[i].getElevation() < 0)
+				*elevat[i] = 0;
+*bruker en løkke for å iterer igjennom alle punktene og oppdaterer start (x,ybase)-punkt ig slutt (x,y2)-punkt for linjer som kan tegne med drawline metode i easygraphivs. 
+*den symbolske konstaten MARGIN i klassen angir hvor på x-aksen den første vertikale linjen skal tenges.
+*else elevat[i] = gpspoints[i].getElevation();. 
 	}
 }
