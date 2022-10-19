@@ -147,6 +147,12 @@ return ystep;
 		for (int i = 0; i < tab.length; i++) {
 			drawString(tab[i], 10, y);
 			y+= TEXTDISTANCE;
+/* I denne oppgaven skal hastigheten der blev kjørt med i løpet av ruten visualiseres. For GPS datafilen medium.log skal visualiseringen se som gitt i oppgaven. 
+* det skal vise en grønn linje som skal representere gjennomsnittshastigheten for hele ruten. 
+* implementerer shoeSpeedProfile i klassen ShoeSpeed.java. 
+* implementerer bredde og lengde, latitude, longitude. gange med ystep / xstep.
+* bruker easygraphics for visualering.
+* bruker for løkke for å sette inn punktene på hvor den grafen viser kurven(høyde-og bunn-punkter) 
 		}
 		
 	}
