@@ -58,7 +58,7 @@ public class GPSComputer {
 		// TODO - SLUTT
 
 	}
-
+//b) 
 	// beregn totale høydemeter (i meter)
 	public double totalElevation() {
 
@@ -84,6 +84,12 @@ public class GPSComputer {
 		// TODO - SLUTT
 
 	}
+	//c)
+/** implementerer metoden public int totalTime() som skal beregne den totale tiden det har tatt å sykle ruten svarende til de innleste GPS data.
+** int lengde skal være lik gpspoints.length - 1. int time skal være lik gpspoints[lengde].getTime() - gpspoints[0].getTime(). 
+** frikantede parenteser bruker for deklarassjon av matriser og for valg av matriseelemeter, i dette tilfellet er det lengde- 0. 
+**/
+
 
 	// beregn total tiden for hele turen (i sekunder)
 	public int totalTime() {
@@ -97,7 +103,14 @@ public class GPSComputer {
 		//throw new UnsupportedOperationException(TODO.method());
 
 	}
-		
+	//d)
+/** implementerer metoden public double[] speeds() som skal returnere en tabell med gjennomsnitshastigheter mellom hver av de punktene vi har beveget oss mellom. 
+**Dvs. første inngang i tabellen skal være hastigheten vi beveget oss med mellom punkt 0 og punkt 1, andre inngang hastigheten mellom punkt 1 og 2 osv. 
+**Hvis antall GPS datapunker er N da vil lengden av den tabellen som returneres være N-1.
+double[] speed = new double[gpspoints.length -1], Ordet new lager et Java-objekt og tildeler minne for det på haugen. 
+**New brukes også til array-oppretting, da arrays også er objekter.
+**/
+	
 	// beregn gjennomsnitshastighets mellom hver av gps punktene
 
 	public double[] speeds() {
@@ -117,7 +130,11 @@ public class GPSComputer {
 		//throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - SLUTT
-	
+	//e)
+/**Implementer metoden public double maxSpeed() som returnerer den største hastigheten vi har beveget oss med mellom to punkter på ruten.
+** starter med double maxspeed = 0. for løkka: for (double speed : maxSpeed), if (speed er større enn maxspeed) maxspeed = speed. 
+
+
 	public double maxSpeed() {
 		
 		double maxspeed = 0;
@@ -138,8 +155,11 @@ public class GPSComputer {
 		
 		// TODO - SLUTT
 	}	
-		
-
+//f)
+/**Implementer metoden public double averageSpeed() som returnerer gjennomsnittshastigheten vi har beveget oss med total sett for hele ruten.
+** starter med double average = 0. average = ((totalDistance()/totalTime())*60*60)/1000;. 
+	
+	
 	public double averageSpeed() {
 
 		double average = 0;
@@ -155,7 +175,7 @@ public class GPSComputer {
 		// TODO - SLUTT
 		
 	}
-
+	
 	/*
 	 * bicycling, <10 mph, leisure, to work or for pleasure 4.0 bicycling,
 	 * general 8.0 bicycling, 10-11.9 mph, leisure, slow, light effort 6.0
@@ -167,7 +187,8 @@ public class GPSComputer {
 
 	// conversion factor m/s to miles per hour
 	public static double MS = 2.236936;
-
+	
+	//g)
 	// beregn kcal gitt weight og tid der kjøres med en gitt hastighet
 	public double kcal(double weight, int secs, double speed) {
 
@@ -206,7 +227,7 @@ public class GPSComputer {
 		//throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - SLUTT
-		
+	//h)	
 	}
 	public double totalKcal(double weight) {
 
@@ -231,7 +252,8 @@ public class GPSComputer {
 		//throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - SLUTT
-
+		
+		//i)
 	private static double WEIGHT = 80.0;
 
 	public String[] displayStatistics() {
